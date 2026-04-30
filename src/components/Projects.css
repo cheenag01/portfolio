@@ -1,0 +1,123 @@
+.projects {
+  background-color: var(--bg-secondary);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  padding: 2rem 1.75rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+/* Animated gradient border on hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-light), #a78bfa, var(--accent-color));
+  background-size: 300% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+  animation: gradientSlide 2s linear infinite;
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.folder-icon {
+  font-size: 2.5rem;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .folder-icon {
+  transform: scale(1.1);
+}
+
+.project-links a {
+  color: var(--text-muted);
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-links a:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.project-title {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--accent-color);
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.project-tech-list li {
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(108, 99, 255, 0.08);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.project-card:hover .project-tech-list li {
+  color: var(--accent-color);
+  background-color: rgba(108, 99, 255, 0.12);
+}

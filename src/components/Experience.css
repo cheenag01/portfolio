@@ -1,0 +1,132 @@
+.experience {
+  background-color: var(--bg-main);
+}
+
+.timeline-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.timeline-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.timeline-column {
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  padding-bottom: 3rem;
+  border-left: 2px solid var(--border-color);
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  border: 3px solid var(--bg-main);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pulse animation on revealed timeline dots */
+.timeline-item.revealed .timeline-dot,
+.timeline-item.reveal-left.revealed .timeline-dot,
+.timeline-item.reveal-right.revealed .timeline-dot {
+  animation: dotPulse 2s ease-in-out 0.5s;
+}
+
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2); }
+  50% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+  100% { box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2); }
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 6px rgba(108, 99, 255, 0.15);
+}
+
+.timeline-content {
+  background-color: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(108, 99, 255, 0.2);
+}
+
+.timeline-date {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  background-color: rgba(108, 99, 255, 0.1);
+  color: var(--accent-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.timeline-content h4 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-company {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.timeline-content ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+}
+
+.timeline-content li {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.timeline-score {
+  font-weight: 600;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+  .timeline-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

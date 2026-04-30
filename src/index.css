@@ -1,0 +1,246 @@
+/* ═══════════════════════════════════════════════
+   Design System — chiraggoyal.in inspired
+   Purple accent • Light/Dark mode • Montserrat
+   ═══════════════════════════════════════════════ */
+
+:root,
+[data-theme="light"] {
+  --primary-color: #1a1a2e;
+  --secondary-color: #16213e;
+  --accent-color: #6c63ff;
+  --accent-light: #8b83ff;
+  --accent-glow: rgba(108, 99, 255, 0.25);
+  --text-main: #333333;
+  --text-light: #555770;
+  --text-muted: #8892b0;
+  --bg-main: #f5f7fd;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --white: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 8px 32px rgba(108, 99, 255, 0.15);
+  --nav-bg: rgba(245, 247, 253, 0.85);
+  --transition: all 0.3s ease-in-out;
+  --ease-reveal: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-theme="dark"] {
+  --primary-color: #e8e8e8;
+  --secondary-color: #c0c0c0;
+  --text-main: #d4d4d8;
+  --text-light: #a1a1aa;
+  --text-muted: #71717a;
+  --bg-main: #171c28;
+  --bg-secondary: #1b2130;
+  --bg-card: #1f2638;
+  --white: #1f2638;
+  --border-color: rgba(255, 255, 255, 0.06);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 8px 32px rgba(108, 99, 255, 0.25);
+  --nav-bg: rgba(23, 28, 40, 0.9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 5rem 0;
+}
+
+/* ─── Custom Selection ─── */
+::selection {
+  background-color: rgba(108, 99, 255, 0.2);
+  color: var(--primary-color);
+}
+
+/* ─── Typography Utilities ─── */
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  transition: width 0.8s var(--ease-reveal) 0.2s;
+}
+
+.section-title.revealed::after {
+  width: 60px;
+}
+
+/* ─── Button Utilities ─── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #5a52d5;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.btn-outline:hover {
+  background-color: rgba(108, 99, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.15);
+}
+
+/* ═══════════════════════════════════════════════
+   Scroll Reveal Animation System
+   ═══════════════════════════════════════════════ */
+
+/* Base reveal — fade up */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s var(--ease-reveal),
+    transform 0.7s var(--ease-reveal);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from left */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.7s var(--ease-reveal),
+    transform 0.7s var(--ease-reveal);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity 0.7s var(--ease-reveal),
+    transform 0.7s var(--ease-reveal);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale in */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.6s var(--ease-reveal),
+    transform 0.6s var(--ease-reveal);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  section {
+    padding: 3rem 0;
+  }
+}
